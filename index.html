@@ -1,0 +1,282 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Unshadowed</title>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#0b0c10;
+  --bg-soft:#0f1117;
+  --card:#12141c;
+  --text:#e7e9ee;
+  --muted:#a7b0c0;
+  --brand:#7c5cff;
+  --brand-2:#22d3ee;
+  --stroke:rgba(255,255,255,0.08);
+  --ring:rgba(124,92,255,0.45);
+  --shadow:0 10px 30px rgba(0,0,0,.35);
+  --radius:18px;
+  --transition:.6s cubic-bezier(.6,.05,.1,.9);
+}
+*{box-sizing:border-box}
+html,body{height:100%}
+body{
+  margin:0; font-family:Inter,system-ui,Segoe UI,Roboto,Helvetica,Arial,sans-serif;
+  background:
+    radial-gradient(60rem 60rem at 10% -10%, rgba(34,211,238,.08), transparent 60%),
+    radial-gradient(50rem 50rem at 110% 10%, rgba(124,92,255,.10), transparent 60%),
+    var(--bg);
+  color:var(--text);
+  overflow-x:hidden;
+}
+a{color:inherit; text-decoration:none}
+.container{max-width:1200px; margin:0 auto; padding:0 20px}
+header{
+  position:sticky; top:0; z-index:50; backdrop-filter:saturate(1.2) blur(8px);
+  background:linear-gradient(to bottom, rgba(11,12,16,.8), rgba(11,12,16,.4));
+  border-bottom:1px solid var(--stroke);
+}
+.nav{display:flex; align-items:center; justify-content:space-between; padding:14px 0}
+.logo{display:flex; align-items:center; gap:12px; font-weight:800; letter-spacing:.2px}
+.logo-badge{
+  width:36px;height:36px; border-radius:12px; background:
+    conic-gradient(from 180deg at 50% 50%, var(--brand), var(--brand-2), var(--brand));
+  box-shadow:inset 0 0 0 1px rgba(255,255,255,.1), var(--shadow);
+}
+.nav-links{display:flex; gap:22px; align-items:center}
+.btn{
+  display:inline-flex; align-items:center; justify-content:center; gap:10px;
+  padding:10px 16px; border-radius:12px; border:1px solid var(--stroke);
+  background:linear-gradient(180deg, rgba(255,255,255,.02), rgba(0,0,0,.2));
+  color:var(--text); font-weight:600; transition:.3s all;
+}
+.btn:hover{transform:translateY(-2px); border-color:rgba(255,255,255,.18)}
+.btn-primary{
+  background:linear-gradient(90deg, var(--brand), var(--brand-2));
+  color:#0b0c10; border:none; box-shadow:0 8px 24px var(--ring);
+}
+.btn-primary:hover{filter:saturate(1.1) brightness(1.05);}
+.mobile-toggle{display:none}
+
+.hero{padding:80px 0 40px; overflow:hidden}
+.hero-grid{display:grid; grid-template-columns:1.2fr .8fr; gap:32px; align-items:center}
+.eyebrow{display:inline-flex; align-items:center; gap:10px; padding:6px 10px; border-radius:999px;
+  border:1px solid var(--stroke); color:var(--muted); font-weight:600; font-size:12px;
+  background:rgba(255,255,255,.02)}
+.glow-dot{width:8px;height:8px;border-radius:999px;background:var(--brand-2); box-shadow:0 0 20px var(--brand-2)}
+h1{font-size:48px; line-height:1.05; margin:16px 0; opacity:0; transform:translateY(20px); transition:var(--transition)}
+.sub{color:var(--muted); font-size:18px; opacity:0; transform:translateY(20px); transition:var(--transition)}
+.cta-row{display:flex; gap:12px; margin-top:22px; flex-wrap:wrap; opacity:0; transform:translateY(20px); transition:var(--transition)}
+.hero-card{
+  border:1px solid var(--stroke); background:linear-gradient(180deg, rgba(255,255,255,.02), rgba(0,0,0,.2));
+  border-radius:var(--radius); padding:18px; box-shadow:var(--shadow);
+  opacity:0; transform:translateY(20px); transition:var(--transition)
+
+}
+
+section{padding:64px 0; opacity:0; transform:translateY(20px); transition:var(--transition)}
+.section-title{font-size:28px; margin:0 0 10px}
+.section-sub{color:var(--muted); margin:0 0 22px}
+.grid{display:grid; gap:20px}
+.grid-3{grid-template-columns:repeat(3,1fr)}
+.grid-4{grid-template-columns:repeat(4,1fr)}
+.feature{padding:18px; border:1px solid var(--stroke); border-radius:16px; background:linear-gradient(180deg, rgba(255,255,255,.02), rgba(0,0,0,.15)); transition:var(--transition); opacity:0; transform:translateY(20px);}
+.feature:hover{transform:scale(1.03)}
+.muted{color:var(--muted)}
+.list{display:grid; gap:10px; margin:0; padding-left:18px}
+
+.pricing{display:flex; gap:20px; flex-wrap:wrap; justify-content:center}
+.price-card{padding:22px; border:1px solid var(--stroke); border-radius:18px; background:linear-gradient(180deg, rgba(255,255,255,.02), rgba(0,0,0,.2)); transition:var(--transition); opacity:0; transform:translateY(20px);}
+.price-card:hover{transform:scale(1.03)}
+.price{font-size:36px; font-weight:800; margin:10px 0}
+.badge{display:inline-flex; align-items:center; gap:8px; font-size:12px; border:1px solid var(--stroke); padding:6px 10px; border-radius:999px; color:var(--muted)}
+details{border:1px solid var(--stroke); border-radius:14px; padding:14px 16px; background:rgba(255,255,255,.02)}
+details+details{margin-top:12px}
+summary{cursor:pointer; font-weight:600; transition:.3s all}
+details[open] summary::after{transform:rotate(180deg)}
+footer{border-top:1px solid var(--stroke); padding:40px 0; color:var(--muted)}
+@media (max-width:980px){
+  .hero-grid{grid-template-columns:1fr}
+  .grid-3{grid-template-columns:1fr 1fr}
+  .grid-4{grid-template-columns:1fr 1fr}
+  .nav-links{display:none}
+  .mobile-toggle{display:inline-flex}
+}
+@media(max-width:600px){
+  h1{font-size:36px}
+  .grid-3,.grid-4{grid-template-columns:1fr}
+}
+
+.btn:focus-visible, a:focus-visible, summary:focus-visible{outline:2px solid var(--brand-2); outline-offset:2px; border-radius:12px}
+.ring{box-shadow:0 0 0 6px var(--ring)}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="container nav">
+    <div class="logo">
+      <div class="logo-badge" aria-hidden="true"></div>
+      <span>Unshadowed</span>
+    </div>
+    <nav class="nav-links" aria-label="Primary">
+      <a href="#features">Features</a>
+      <a href="#pricing">Pricing</a>
+      <a href="#faq">FAQ</a>
+      <a href="#contact">Contact</a>
+      <a class="btn btn-primary" href="#cta">Get Started</a>
+    </nav>
+    <button class="btn mobile-toggle" id="mobileBtn" aria-expanded="false" aria-controls="mobileMenu">Menu</button>
+  </div>
+</header>
+
+<div id="mobileMenu" hidden style="border-top:1px solid var(--stroke); background:var(--bg-soft)">
+  <div class="container" style="padding:14px 0; display:grid; gap:10px">
+    <a href="#features">Features</a>
+    <a href="#pricing">Pricing</a>
+    <a href="#faq">FAQ</a>
+    <a href="#contact">Contact</a>
+    <a class="btn btn-primary" href="#cta">Get Started</a>
+  </div>
+</div>
+
+<main>
+<section class="hero">
+  <div class="container hero-grid">
+    <div>
+      <span class="eyebrow"><span class="glow-dot"></span> Updated</span>
+      <h1>Unshadowed — Reduce your Shadow Bans</h1>
+      <p class="sub">Fast, privacy-respecting, and working.</p>
+      <div class="cta-row">
+        <a class="btn btn-primary" href="#pricing">View Plans</a>
+      </div>
+      </div>
+      <div class="hero-card">
+        <strong>Whats Unshadowed?</strong>
+        <p class="muted" style="margin:6px 0 0">Unshadowed is an software for Call of Duty: Black Ops 6. The tool blocks 9/10 reports, thats the reason with it does reduce Shadow bans.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="features">
+  <div class="container">
+    <h2 class="section-title">Features</h2>
+    <div class="grid grid-4">
+      <div class="feature"><h3>Clean UI!</h3><p class="muted">Minimal, accessible components with smooth interactions.</p></div>
+      <div class="feature"><h3>No Setup!</h3><p class="muted">Its 1 File! So you only have to registier.</p></div>
+      <div class="feature"><h3>Beginner friendly!</h3><p class="muted">We looking that we are beginner friendly, the login is very easy.</p></div>
+      <div class="feature"><h3>Up to date!</h3><p class="muted">We´re looking that our tool is everytime updated.</p></div>
+    </div>
+  </div>
+</section>
+
+<section id="pricing">
+  <div class="container">
+    <h2 class="section-title">Get Keys</h2>
+    <p class="section-sub">Purchase the Unshadowed key directly through one of our resellers.</p>
+    <div class="pricing">
+
+      <!-- Day -->
+      <div class="price-card">
+        <div class="badge">Day Key</div>
+        <div class="price">€2/day</div>
+        <p class="muted">Short-term access. Perfect to try it out.</p>
+        <div class="cta-row">
+          <a class="btn btn-primary" href="https://discord.gg/dneizone" target="_blank">Dneizone</a>
+          <a class="btn btn-primary" href="https://discord.gg/TasNhDNfg8" target="_blank">OGSWARE</a>
+          <a class="btn btn-primary" href="https://discord.gg/placeholder" target="_blank">Placeholder</a>
+        </div>
+      </div>
+
+      <!-- Week -->
+      <div class="price-card">
+        <div class="badge">Week Key</div>
+        <div class="price">€5/week</div>
+        <p class="muted">Full access for a week. Great for regular use.</p>
+        <div class="cta-row">
+          <a class="btn btn-primary" href="https://discord.gg/dneizone" target="_blank">Dneizone</a>
+          <a class="btn btn-primary" href="https://discord.gg/TasNhDNfg8" target="_blank">OGSWAREr</a>
+          <a class="btn btn-primary" href="https://discord.gg/placeholder" target="_blank">Placeholder</a>
+        </div>
+      </div>
+
+      <!-- Month -->
+      <div class="price-card">
+        <div class="badge">Month Key</div>
+        <div class="price">€10/month</div>
+        <p class="muted">Unlimited access for a month. Best value.</p>
+        <div class="cta-row">
+          <a class="btn btn-primary" href="https://discord.gg/dneizone" target="_blank">Dneizone</a>
+          <a class="btn btn-primary" href="https://discord.gg/TasNhDNfg8" target="_blank">OGSWARE</a>
+          <a class="btn btn-primary" href="https://discord.gg/placeholder" target="_blank">Placeholder</a>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<section id="faq">
+  <div class="container">
+    <h2 class="section-title">FAQ</h2>
+    <p class="section-sub">Frequently Asked Questions</p>
+    <details><summary>How do I purchase?</summary>
+      <p class="muted">To buy just join our resellers and open a ticket or buy it on there website</p>
+    </details>
+    <details><summary>Is it safe?</summary>
+      <p class="muted">Yes, Unshadowed respects privacy and runs without extra permissions.</p>
+    </details>
+    <details><summary>Which platforms are supported?</summary>
+      <p class="muted">Unshadowed is only available from our resellers. But works only on Windows, Mac & Linux.</p>
+    </details>
+  </div>
+</section>
+
+<section id="contact">
+  <div class="container">
+    <h2 class="section-title">Contact</h2>
+    <p class="section-sub">Reach us on our email</p>
+    <a class="btn btn-primary" href="" target="_blank">info.unshadowed@gmail.com</a>
+    <a class="btn btn-primary" href="https://discord.gg/ttDxNCu7SK" target="_blank">Direct Dev Support</a>
+  </div>
+</section>
+
+<footer>
+  <div class="container" style="text-align:center">
+    &copy; 2025 Unshadowed. All rights reserved.
+  </div>
+</footer>
+
+<script>
+
+const mobileBtn = document.getElementById('mobileBtn');
+const mobileMenu = document.getElementById('mobileMenu');
+mobileBtn.addEventListener('click',()=>{
+  const expanded = mobileBtn.getAttribute('aria-expanded') === 'true';
+  mobileBtn.setAttribute('aria-expanded',!expanded);
+  mobileMenu.hidden = expanded;
+});
+
+
+const observer = new IntersectionObserver(entries=>{
+  entries.forEach(entry=>{
+    if(entry.isIntersecting){
+      entry.target.style.opacity=1;
+      entry.target.style.transform='translateY(0)';
+      entry.target.style.transition='all 0.6s cubic-bezier(.6,.05,.1,.9)';
+      observer.unobserve(entry.target);
+    }
+  })
+},{threshold:0.15});
+
+document.querySelectorAll('section, .hero h1, .sub, .cta-row, .hero-card, .feature, .price-card').forEach(el=>{
+  observer.observe(el);
+});
+</script>
+
+</body>
+</html>
